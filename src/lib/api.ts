@@ -1,4 +1,7 @@
-export async function sendMessageToAPI(message: string) {
+export async function sendMessageToAPI(
+  message: string,
+  model: string = "mistralai/mistral-7b-instruct"
+) {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   try {
@@ -8,14 +11,15 @@ export async function sendMessageToAPI(message: string) {
         method: "POST",
         headers: {
           Authorization: `Bearer ${apiKey}`,
-          "Content-type": "aplication/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "openai/gpt-4o-mini",
+          model: model,
           messages: [{ role: "user", content: message }],
         }),
       }
     );
+
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`Failed to send message to API: ${errorText}`);
