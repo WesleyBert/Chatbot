@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 
 interface ChatWelcomeProps {
   onSend: (value: string) => void;
@@ -12,7 +12,7 @@ const suggestions = [
   "I want to know about the company Totvs",
 ];
 
-export default function ChatWelcome({ onSend }: ChatWelcomeProps) {
+export function ChatWelcome({ onSend }: ChatWelcomeProps) {
   const [value, setValue] = useState("");
 
   const handleSend = () => {

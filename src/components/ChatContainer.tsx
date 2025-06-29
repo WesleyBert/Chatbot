@@ -1,7 +1,7 @@
 import Message from "@/types/message";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
-import MessageBubble from "./MessageBubble";
-import LoadingBubble from "./loadingBubble";
+import { MessageBubble } from "./MessageBubble";
+import { LoadingBubble } from "./LoadingBubble";
 import { useEffect, useRef } from "react";
 
 interface chatContainerProps {
@@ -9,10 +9,7 @@ interface chatContainerProps {
   loading: boolean;
 }
 
-export default function ChatContainer({
-  messages,
-  loading,
-}: chatContainerProps) {
+export function ChatContainer({ messages, loading }: chatContainerProps) {
   const endOfMessages = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

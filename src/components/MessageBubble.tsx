@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/cn";
 import Message from "@/types/message";
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
-import MarkdownRenderer from "./MarkdownRenderer";
+import { MarkdownRenderer } from "./MarkdownRenderer";
 import { useState } from "react";
 import { FiCopy, FiCheck } from "react-icons/fi";
 
@@ -13,7 +13,7 @@ function sanitizeMarkdown(content: string) {
   return content.replace(/```(?:markdown)?\n([\s\S]*?)```/gi, "$1").trim();
 }
 
-export default function MessageBubble({ message }: MessageBubbleProps) {
+export function MessageBubble({ message }: MessageBubbleProps) {
   const isUser = message.role === "user";
   const [copied, setCopied] = useState(false);
 

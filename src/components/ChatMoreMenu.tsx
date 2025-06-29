@@ -14,7 +14,7 @@ interface ChatMoreMenuProps {
   onExport: (chat: Chat, format: "json" | "txt") => void;
 }
 
-export default function ChatMoreMenu({
+export function ChatMoreMenu({
   chat,
   onDelete,
   onExport,

@@ -8,7 +8,7 @@ interface MarkdownRendererProps {
   className?: string;
 }
 
-export default function MarkdownRenderer({
+export function MarkdownRenderer({
   content,
   className,
 }: MarkdownRendererProps) {

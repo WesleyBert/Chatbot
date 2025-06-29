@@ -11,14 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { AI_MODELS, type AIModel } from "@/lib/models";
+import { AI_MODELS, type AIModel } from "@/constants/models";
 
 interface ModelSelectorProps {
   selectedModel: AIModel;
   onModelChange: (model: AIModel) => void;
 }
 
-export default function ModelSelector({
+export function ModelSelector({
   selectedModel,
   onModelChange,
 }: ModelSelectorProps) {

@@ -9,7 +9,7 @@ interface ChatInputProps {
   loading: boolean;
 }
 
-export default function ChatInput({ onSend, loading }: ChatInputProps) {
+export function ChatInput({ onSend, loading }: ChatInputProps) {
   const [value, setValue] = useState("");
 
   const handleSend = () => {

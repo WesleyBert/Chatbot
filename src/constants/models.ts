@@ -42,4 +42,4 @@ export const AI_MODELS: AIModel[] = [
   },
 ];
 
-export const DEFAULT_MODEL = AI_MODELS[0]; // Mistral 7B Instruct
+export const DEFAULT_MODEL = AI_MODELS[0];
