@@ -115,7 +115,7 @@ Acesse [http://localhost:3000](http://localhost:3000) para ver a aplicação.
 
 ### Link do deploy
 
--
+https://chatbot-dun-pi.vercel.app/
 
 ## 📁 Estrutura do Projeto
 
