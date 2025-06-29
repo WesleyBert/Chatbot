@@ -7,9 +7,9 @@ interface ChatWelcomeProps {
 }
 
 const suggestions = [
-  "I talk about the company Totvs",
-  "give me advice about the company Totvs",
-  "I want to know about the company Totvs",
+  "Talk about the company Totvs",
+  "What are the main services of the company Totvs?",
+  "What are the missions and values of the company Totvs?",
 ];
 
 export function ChatWelcome({ onSend }: ChatWelcomeProps) {

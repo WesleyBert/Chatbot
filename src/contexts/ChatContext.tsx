@@ -1,6 +1,11 @@
-import React, { createContext, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useRef,
+} from "react";
 import { useChats } from "@/hooks/useChats";
-import { useContextDocument } from "@/hooks/useContextDocument";
 import { type AIModel } from "@/constants/models";
 import Message from "@/types/message";
 import Chat from "@/types/chats";
@@ -13,6 +18,11 @@ interface ChatContextType {
   selectedModel: AIModel;
   currentMessages: Message[];
 
+  // Context document data
+  contextDoc: string | null;
+  contextDocName: string | null;
+  fileInputRef: React.RefObject<HTMLInputElement | null>;
+
   // Chat actions
   createNewChat: () => void;
   selectChat: (id: string) => void;
@@ -21,6 +31,10 @@ interface ChatContextType {
   handleDeleteChat: (id: string) => void;
   handleExportChat: (chat: Chat, format: "json" | "txt") => void;
   setSelectedModel: (model: AIModel) => void;
+
+  // Context document actions
+  handleFileUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleRemoveContext: () => void;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -30,7 +44,10 @@ interface ChatProviderProps {
 }
 
 export function ChatProvider({ children }: ChatProviderProps) {
-  const { contextDoc } = useContextDocument();
+  // Context document state
+  const [contextDoc, setContextDoc] = useState<string | null>(null);
+  const [contextDocName, setContextDocName] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
     chats,
@@ -47,12 +64,35 @@ export function ChatProvider({ children }: ChatProviderProps) {
     setSelectedModel,
   } = useChats(contextDoc);
 
+  // Context document handlers
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setContextDoc(event.target?.result as string);
+      setContextDocName(file.name);
+    };
+    reader.readAsText(file);
+  };
+
+  const handleRemoveContext = () => {
+    setContextDoc(null);
+    setContextDocName(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   const value: ChatContextType = {
     chats,
     activeChatId,
     loading,
     selectedModel,
     currentMessages,
+    contextDoc,
+    contextDocName,
+    fileInputRef,
     createNewChat,
     selectChat,
     handleSendFirstMessage,
@@ -60,6 +100,8 @@ export function ChatProvider({ children }: ChatProviderProps) {
     handleDeleteChat,
     handleExportChat,
     setSelectedModel,
+    handleFileUpload,
+    handleRemoveContext,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;

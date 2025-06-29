@@ -3,7 +3,6 @@ import { ModelSelector } from "./ModelSelector";
 import { ChatList } from "./ChatList";
 import { ContextUploader } from "./ContextUploader";
 import { useChatContext } from "@/contexts/ChatContext";
-import { useContextDocument } from "@/hooks/useContextDocument";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -20,14 +19,11 @@ export function Sidebar({ sidebarOpen, onClose }: SidebarProps) {
     handleDeleteChat,
     handleExportChat,
     setSelectedModel,
-  } = useChatContext();
-
-  const {
     contextDocName,
     fileInputRef,
     handleFileUpload,
     handleRemoveContext,
-  } = useContextDocument();
+  } = useChatContext();
 
   const handleNewChat = () => {
     createNewChat();
