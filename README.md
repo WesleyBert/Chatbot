@@ -46,7 +46,7 @@ Um chatbot inteligente construído com Next.js que permite fazer upload de docum
 ### 1. Clone o repositório
 
 ```bash
-git clone <url-do-repositorio> //adicionar url do repositorio
+git clone <https://github.com/WesleyBert/app.git>
 cd desafio-dev-front
 ```
 
